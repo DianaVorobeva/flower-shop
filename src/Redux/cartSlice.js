@@ -7,15 +7,27 @@ export const cartSlice = createSlice({
     },
     reducers: {
         addItemToCart: (state,action) => {
-            const timeId = new Date().getTime();
-
         state.cartItems.push({
-            id: timeId,
-            productId: action.payload.item.id,
+            ...action.payload.item,
             quantity: action.payload.quantity,
             totalPrice: action.payload.quantity*action.payload.item.price
         })
-      
+           },
+
+        updateQuantity: (state,action) => {
+            const newCart = []
+            state.cartItems.forEach(element => {
+                if(element.id===action.payload.item.id) {
+                    let countNew = element.quantity + action.payload.quantity
+                    let totalSum = element.price * countNew
+                    const changeCart = {...element, quantity: countNew, totalPrice: totalSum}
+                    newCart.push(changeCart)
+                } else {
+                    newCart.push(element)
+                }
+            })
+            state.cartItems=newCart
+
            },
 
         removeItemFromCart: (state,action) => {
@@ -34,5 +46,5 @@ export const getTotalPrice = state => {
 }
 
 export const getCartItems = state => state.cart.cartItems;
-export const {addItemToCart,removeItemFromCart} = cartSlice.actions;
+export const {addItemToCart,updateQuantity,removeItemFromCart} = cartSlice.actions;
 export default cartSlice.reducer;

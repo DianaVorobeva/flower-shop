@@ -164,9 +164,9 @@ h2 {
 
 .lengthCart {
   font-family: 'Source Sans Pro', sans-serif;
-  font-size: 25px;
+  font-size: 22px;
   font-weight: bold;
-  padding: 7px;
+  padding: 1px;
   padding-left: 10px;
   padding-right: 10px;
   color: #408987;
@@ -244,4 +244,11 @@ h2 {
   margin-bottom: 15px;
 }
 
+}
+
+@media all and (max-width: 500px) {
+  .wrapperMain {
+   min-width: fit-content;
+    margin-left: 0px;
+  }
 }

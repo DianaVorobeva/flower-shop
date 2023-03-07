@@ -7,16 +7,11 @@ export const likesSlice = createSlice({
     },
     reducers: {
         addItemToLike: (state,action) => {
-            state.likedItems.push({
-                productId: action.payload.item.id
-            })
-        },
+            state.likedItems.push(action.payload)},
 
         removeItemFromLike: (state,action) => {
-    
             state.likedItems = state.likedItems.filter(
-                likeItem => likeItem.id !== action.payload.likeItemId,
-
+                likedItem => likedItem.id !== action.payload,
             )
         }
     }
